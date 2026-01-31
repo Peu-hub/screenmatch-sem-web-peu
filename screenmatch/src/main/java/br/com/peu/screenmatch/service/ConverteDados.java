@@ -1,4 +1,4 @@
-package br.com.peu.screenmatch.service.models;
+package br.com.peu.screenmatch.service;
 
 import tools.jackson.databind.ObjectMapper;
 
