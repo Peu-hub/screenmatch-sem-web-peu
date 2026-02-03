@@ -40,15 +40,16 @@ public class Principal {
 //        temporadas.forEach(t -> t.dadosEpisodios()
 //                .forEach(e -> System.out.println(e.titulo())));
 
-        List<DadosEpisodio> episodiosOrdenados = temporadas.stream()
-                .flatMap((DadosTemporada t) -> t.dadosEpisodios().stream())
-                .filter(e -> !e.avaliacao().equals("N/A")) // remove os "N/A"
-                .sorted(Comparator.comparingDouble(
-                        e -> Double.parseDouble(e.avaliacao())))
+        List<DadosEpisodio> listaEpisodios = temporadas.stream()
+                .flatMap(t -> t.dadosEpisodios().stream())
                 .collect(Collectors.toList());
 
-        List<DadosEpisodio> melhoresEpisodios = episodiosOrdenados.stream()
-        melhoresEpisodios.stream().limit(5);
+        List<DadosEpisodio> melhoresEpisodios = listaEpisodios.stream()
+                .filter(e -> !e.avaliacao().equals("N/A")) // remove os "N/A"
+                .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed())
+                        .limit(5)
+                .collect(Collectors.toList());
+
 
         System.out.println("\nMelhores Episódios de "+dadosSerie.titulo()+":");
         melhoresEpisodios.forEach(System.out::println);
