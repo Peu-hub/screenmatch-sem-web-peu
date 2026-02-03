@@ -8,7 +8,7 @@ import java.net.http.HttpResponse;
 
 public class ConsumoAPI {
 
-
+//todo        essa classe só consome Json.
     public String obterDados(String endereco) {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
